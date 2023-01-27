@@ -11,6 +11,7 @@ namespace HotelFinder.DataAccess.Abstract
     {
         List<Hotel> HotelGetAll();
         Hotel HotelGetById(int id);
+        List<Hotel> HotelGetName(string name);
         Hotel HotelAdded(Hotel hotel);
         Hotel HotelUpdated(Hotel hotel);
         void HotelDeleted(int id);

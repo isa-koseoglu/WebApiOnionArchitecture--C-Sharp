@@ -18,9 +18,7 @@ namespace HotelFinder.Bisuiness.ConCreate
             _hotelRespository = hotelRepository;
         }
 
-        public HotelManager()
-        {
-        }
+        
 
         public List<Hotel> HotelGetAll()
         {
@@ -45,6 +43,19 @@ namespace HotelFinder.Bisuiness.ConCreate
         public void HotelDeleted(int id)
         {
             _hotelRespository.HotelDeleted(id);
+        }
+
+        public List<Hotel> HotelGetNameOrId(int id=0, string name="")
+        {
+            var hotelFindName = _hotelRespository.HotelGetName(name);
+            var hotelFindId = _hotelRespository.HotelGetById(id);
+            if (hotelFindId != null)
+            {
+                hotelFindName.Clear();
+                hotelFindName.Add(hotelFindId);
+            }
+            return hotelFindName;
+            
         }
     }
 }

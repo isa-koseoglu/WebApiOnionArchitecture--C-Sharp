@@ -11,6 +11,7 @@ namespace HotelFinder.Bisuiness.Abstcract
     {
         List<Hotel> HotelGetAll();
         Hotel HotelGetById(int id);
+        List<Hotel> HotelGetNameOrId(int id,string name);
         Hotel HotelAdded(Hotel hotel);
         Hotel HotelUpdated(Hotel hotel);
         void HotelDeleted(int id);

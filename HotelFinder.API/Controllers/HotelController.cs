@@ -33,7 +33,8 @@ namespace HotelFinder.API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{action}/{id}")]
+        [HttpGet()]
+        [Route("[action]/{id}")]
         public IActionResult HotelGetAll(int id)
         {
             var hotels= _hotelService.HotelGetById(id);
@@ -42,7 +43,32 @@ namespace HotelFinder.API.Controllers
 
             return NotFound();
         }
+        [HttpGet()]
+        [Route("[action]/id={id}&name={name}")]
+        public IActionResult HotelGetAll(int id,string name)
+        {
+            try
+            {
+                int _id = id;
+                string _name = name;
+                if (_id <= 0) _id = 0;
+                if (string.IsNullOrEmpty(_name)) _name = "";
+                if(_id==0 && _name == "") NotFound();
+                var hotelsFind = _hotelService.HotelGetNameOrId(_id, _name);
+                if(hotelsFind!=null&&hotelsFind.Count>0)
+                    return Ok(hotelsFind);
+                return NotFound();
 
+            }
+            catch (System.Exception)
+            {
+
+                return NotFound();
+            }
+            
+
+            
+        }
         /// <summary>
         ///  Added Hotels --- Action = HotelAdded / Hotel -> Models
         /// </summary>
@@ -66,10 +92,14 @@ namespace HotelFinder.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{action}/{id}")]
-        public bool HotelDeleted(int id)
+        public IActionResult HotelDeleted(int id)
         {
-            _hotelService.HotelDeleted(id);
-            return true;
+            if (_hotelService.HotelGetById(id)!=null)
+            {
+                _hotelService.HotelDeleted(id);
+                return Ok();
+            }
+            return NotFound();
         }
 
         /// <summary>
@@ -78,9 +108,14 @@ namespace HotelFinder.API.Controllers
         /// <param name="hotel"></param>
         /// <returns></returns>
         [HttpPut("{action}")]
-        public Hotel HotelUpdated([FromBody] Hotel hotel)
+        public IActionResult HotelUpdated([FromBody] Hotel hotel)
         {
-            return _hotelService.HotelUpdated(hotel);
+            if (_hotelService.HotelGetById(hotel.Id)!=null)
+            {
+                return Ok(_hotelService.HotelUpdated(hotel));
+            }
+            
+            return NotFound();
         }
     }
 }

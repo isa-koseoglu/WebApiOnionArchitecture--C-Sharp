@@ -53,6 +53,16 @@ namespace HotelFinder.DataAccess.ConCreate
             }
         }
 
+        public List<Hotel> HotelGetName(string name)
+        {
+            
+            using (var dbContext = new HotelDbContext())
+            {
+                var hotelName = dbContext.Hotels.Where(p => p.Name.ToLower().StartsWith(name)).ToList();
+                return hotelName;
+            }
+        }
+
         public Hotel HotelUpdated(Hotel hotel)
         {
             using (var dbContext = new HotelDbContext())
