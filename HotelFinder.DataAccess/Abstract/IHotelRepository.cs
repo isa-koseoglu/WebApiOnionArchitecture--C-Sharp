@@ -9,11 +9,11 @@ namespace HotelFinder.DataAccess.Abstract
 {
     public interface IHotelRepository
     {
-        List<Hotel> HotelGetAll();
-        Hotel HotelGetById(int id);
-        List<Hotel> HotelGetName(string name);
-        Hotel HotelAdded(Hotel hotel);
-        Hotel HotelUpdated(Hotel hotel);
-        void HotelDeleted(int id);
+        Task<List<Hotel>> HotelGetAll();
+        Task<Hotel> HotelGetById(int id);
+        Task<List<Hotel>> HotelGetName(string name);
+        Task<Hotel> HotelAdded(Hotel hotel);
+        Task<Hotel> HotelUpdated(Hotel hotel);
+        Task HotelDeleted(int id);
     }
 }

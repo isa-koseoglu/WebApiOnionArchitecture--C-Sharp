@@ -20,35 +20,35 @@ namespace HotelFinder.Bisuiness.ConCreate
 
         
 
-        public List<Hotel> HotelGetAll()
+        public async Task<List<Hotel>> HotelGetAll()
         {
-            return _hotelRespository.HotelGetAll();
+            return await _hotelRespository.HotelGetAll();
         }
 
-        public Hotel HotelGetById(int id)
+        public async Task<Hotel> HotelGetById(int id)
         {
-            return _hotelRespository.HotelGetById(id);
+            return await _hotelRespository.HotelGetById(id);
         }
 
-        public Hotel HotelAdded(Hotel hotel)
+        public async Task<Hotel> HotelAdded(Hotel hotel)
         {
-            return _hotelRespository.HotelAdded(hotel);
+            return await _hotelRespository.HotelAdded(hotel);
         }
 
-        public Hotel HotelUpdated(Hotel hotel)
+        public async Task<Hotel> HotelUpdated(Hotel hotel)
         {
-            return _hotelRespository.HotelUpdated(hotel);
+            return await _hotelRespository.HotelUpdated(hotel);
         }
 
-        public void HotelDeleted(int id)
+        public async Task HotelDeleted(int id)
         {
-            _hotelRespository.HotelDeleted(id);
+            await _hotelRespository.HotelDeleted(id);
         }
 
-        public List<Hotel> HotelGetNameOrId(int id=0, string name="")
+        public async Task<List<Hotel>> HotelGetNameOrId(int id=0, string name="")
         {
-            var hotelFindName = _hotelRespository.HotelGetName(name);
-            var hotelFindId = _hotelRespository.HotelGetById(id);
+            var hotelFindName = await _hotelRespository.HotelGetName(name);
+            var hotelFindId =await  _hotelRespository.HotelGetById(id);
             if (hotelFindId != null)
             {
                 hotelFindName.Clear();

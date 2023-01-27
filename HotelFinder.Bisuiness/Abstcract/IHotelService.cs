@@ -9,11 +9,11 @@ namespace HotelFinder.Bisuiness.Abstcract
 {
     public interface IHotelService
     {
-        List<Hotel> HotelGetAll();
-        Hotel HotelGetById(int id);
-        List<Hotel> HotelGetNameOrId(int id,string name);
-        Hotel HotelAdded(Hotel hotel);
-        Hotel HotelUpdated(Hotel hotel);
-        void HotelDeleted(int id);
+        Task<List<Hotel>> HotelGetAll();
+        Task<Hotel> HotelGetById(int id);
+        Task<List<Hotel>> HotelGetNameOrId(int id,string name);
+        Task<Hotel> HotelAdded(Hotel hotel);
+        Task<Hotel> HotelUpdated(Hotel hotel);
+        Task HotelDeleted(int id);
     }
 }

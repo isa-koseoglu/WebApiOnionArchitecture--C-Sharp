@@ -13,7 +13,7 @@ namespace HotelFinder.DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=10.10.10.50; Database=HotelDb;uid=sa;pwd=P67S96L332008%;");
+            optionsBuilder.UseSqlServer("Server=*********; Database=HotelDb;uid=sa;pwd=**********;");/* SERVER CONFİG*/
         }
         public DbSet<Hotel>Hotels { get; set; }
     }
